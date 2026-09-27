@@ -1,0 +1,95 @@
+<section id="horizon" class="horizon">
+  <div class="container">
+    <div class="heading">
+      <span class="eyebrow">Exploring</span>
+      <h2>On the horizon</h2>
+    </div>
+    <div class="item">
+      <div class="title">
+        <span class="display name">WaveMail</span>
+        <span class="mono status">Paused</span>
+      </div>
+      <p>
+        A DSGVO-konform transactional email service hosted in Germany. Think Resend, but with data
+        residency that German businesses actually need. We're currently exploring whether this fills
+        a real gap in the market.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .horizon {
+    border-top: 1px solid var(--line);
+  }
+
+  .container {
+    padding-top: 120px;
+  }
+
+  .heading {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--paper);
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-3);
+  }
+
+  h2 {
+    margin: 0;
+    font-weight: 700;
+    font-stretch: 112%;
+    font-size: clamp(34px, 4vw, 60px);
+    line-height: 1;
+    letter-spacing: -0.035em;
+  }
+
+  .item {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr));
+    align-items: start;
+    gap: 40px;
+    padding: 40px 0 48px;
+    border-bottom: 1px solid var(--line);
+    background-image: repeating-linear-gradient(
+      135deg,
+      transparent 0 14px,
+      rgb(236 234 228 / 0.035) 14px 15px
+    );
+  }
+
+  .title {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .name {
+    font-size: clamp(36px, 4vw, 64px);
+    line-height: 1;
+    color: var(--text-4);
+  }
+
+  .status {
+    border: 1px dashed var(--text-4);
+    color: var(--text-3);
+    padding: 4px 8px;
+  }
+
+  p {
+    margin: 0;
+    max-width: 60ch;
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--text-3);
+    text-wrap: pretty;
+  }
+</style>

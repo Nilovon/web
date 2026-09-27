@@ -1,0 +1,65 @@
+<section id="contact" class="contact">
+  <div class="container inner">
+    <div class="meta mono">
+      <span>Get in touch</span>
+      <a href="https://github.com/Nilovon">GitHub ↗</a>
+    </div>
+    <a href="mailto:hello@nilovon.com" class="email">hello@nilovon.com</a>
+    <p>Want to collaborate, contribute, or just say hi? We'd love to hear from you.</p>
+  </div>
+</section>
+
+<style>
+  .contact {
+    background: var(--accent);
+    color: var(--ink);
+  }
+
+  .inner {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding-block: 96px 80px;
+    container-type: inline-size;
+  }
+
+  .meta {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  /* Links on the accent background must never take the accent hover color. */
+  a,
+  a:hover {
+    color: var(--ink);
+  }
+
+  .meta a:hover {
+    text-decoration: underline;
+  }
+
+  .email {
+    font-weight: 800;
+    font-stretch: 112%;
+    /* The address is ~9.8em wide; sizing by container width keeps it on one line, hover shift included. */
+    font-size: min(9.6cqi, 144px);
+    white-space: nowrap;
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+    border-bottom: 3px solid var(--ink);
+    padding-bottom: 16px;
+    transition: padding-left 0.3s var(--ease-out);
+  }
+  .email:hover {
+    padding-left: 0.12em;
+  }
+
+  p {
+    margin: 0;
+    max-width: 40ch;
+    font-size: 20px;
+    line-height: 1.5;
+  }
+</style>
