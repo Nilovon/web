@@ -1,43 +1,51 @@
-# Astro Starter Kit: Minimal
+# Nilovon Web
+
+Source for [nilovon.com](https://nilovon.com), the website of Nilovon, a small software studio from Germany. We build open source SDKs, developer tools and business software.
+
+The site is a single page built with [Astro](https://astro.build). An interactive [three.js](https://threejs.org) scene in the hero presents our products as 3D slabs.
+
+## Products
+
+| Product | Type | Status |
+| --- | --- | --- |
+| [Tenvima](https://tenvima.com/) | Modular workspace for IT service providers and MSPs | Alpha |
+| [BucketKit](https://bucketkit.nilovon.com/) | Typesafe S3 uploads for Node.js and React | Open source |
+| [hcloud-js](https://hcloud-js.nilovon.com/) | Typesafe Hetzner Cloud SDK | Open source |
+
+Product data lives in [`src/data/products.ts`](src/data/products.ts). The showcase, the 3D scene and the open source section all read from this file, so a new product only needs a new entry there.
+
+## Getting started
+
+Requires Node.js 22.12 or newer.
 
 ```sh
-npm create astro@latest -- --template minimal
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+The dev server runs at `http://localhost:4321`.
 
-## 🚀 Project Structure
+## Commands
 
-Inside of your Astro project, you'll see the following folders and files:
+| Command | Action |
+| --- | --- |
+| `npm run dev` | Start the local dev server |
+| `npm run build` | Build the production site to `./dist/` |
+| `npm run preview` | Preview the production build locally |
+| `npm run astro -- <cmd>` | Run Astro CLI commands such as `astro check` |
+
+## Project structure
 
 ```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+src/
+├── components/   Page sections (Header, Showcase, Horizon, OpenSource, Contact, Footer)
+├── data/         Product definitions
+├── layouts/      Base layout with global styles and design tokens
+├── pages/        index.astro
+└── scripts/      three.js scene and showcase controller
+public/           Static assets
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Contact
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Questions, ideas or contributions: [hello@nilovon.com](mailto:hello@nilovon.com) or open an issue on [GitHub](https://github.com/Nilovon).
