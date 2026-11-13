@@ -1,0 +1,290 @@
+---
+import { products, pad, type Product } from '../data/products';
+
+const [flagship, ...sdks] = products;
+const square = (p: Product) => `background:${p.slab.bg};color:${p.slab.fg}`;
+---
+
+<section id="products" class="section products">
+  <div class="head">
+    <h2>What we are building</h2>
+    <p>
+      One platform and two SDKs. All three are open source, so you can read the code before you
+      trust it.
+    </p>
+  </div>
+
+  <article id={flagship.id} class="flagship">
+    <div class="copy">
+      <div class="meta">
+        <span class="square" style={square(flagship)}>01</span>
+        <span class="label">{flagship.kind} · {flagship.license}</span>
+      </div>
+      <h3>{flagship.name}</h3>
+      <p class="tagline">{flagship.tagline}</p>
+      <p class="description">{flagship.description}</p>
+      <div class="links">
+        {
+          flagship.links.map((link, i) => (
+            <a href={link.href} class:list={['btn', i === 0 ? 'btn-primary' : 'btn-outline']}>
+              {link.label}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+    <div class="sheet">
+      <ul>
+        {flagship.features.map((f) => <li>{f}</li>)}
+      </ul>
+      <dl>
+        <div>
+          <dt class="label">Runs on</dt>
+          <dd>Your own server, via Docker Compose</dd>
+        </div>
+        <div>
+          <dt class="label">Built with</dt>
+          <dd>{flagship.stack}</dd>
+        </div>
+      </dl>
+    </div>
+  </article>
+
+  <div class="sdks">
+    {
+      sdks.map((p, i) => (
+        <article id={p.id} class="sdk">
+          <div class="meta">
+            <span class="square" style={square(p)}>
+              {pad(i + 2)}
+            </span>
+            <span class="label">
+              {p.kind} · {p.license}
+            </span>
+          </div>
+          <h3>
+            {p.name} <span class="muted">{p.tagline}</span>
+          </h3>
+          <p class="description">{p.description}</p>
+          <ul>
+            {p.features.map((f) => (
+              <li>{f}</li>
+            ))}
+          </ul>
+          <div class="sdk-foot">
+            <span class="label">{p.stack}</span>
+            {p.links.map((link) => (
+              <a href={link.href} class="text-link">
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 24px 48px;
+    align-items: end;
+    margin-bottom: 56px;
+  }
+
+  h2 {
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.05;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  .head p {
+    max-width: 44ch;
+    font-size: 17px;
+    color: var(--ink-2);
+  }
+
+  .meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  h3 {
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  .description {
+    color: var(--ink-2);
+    line-height: 1.6;
+    text-wrap: pretty;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  /* Flagship: Lumvika gets the full width, copy on the left, facts on a sheet. */
+  .flagship {
+    display: grid;
+    grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+    gap: 8px;
+    padding: 8px;
+    background: var(--card);
+    border-radius: var(--radius);
+  }
+
+  .copy {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 32px 32px 32px 28px;
+  }
+
+  .flagship h3 {
+    margin-top: 12px;
+    font-size: clamp(44px, 6vw, 72px);
+    line-height: 1;
+  }
+
+  .tagline {
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 12px;
+  }
+
+  .sheet {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 32px;
+    padding: 28px;
+    background: var(--paper);
+    border-radius: calc(var(--radius) - 6px);
+  }
+
+  .sheet li {
+    padding: 14px 0;
+    border-bottom: 1px dashed var(--rule);
+    font-weight: 500;
+  }
+
+  .sheet li:first-child {
+    padding-top: 0;
+  }
+
+  dl {
+    display: grid;
+    gap: 14px;
+    margin: 0;
+  }
+
+  dd {
+    margin: 2px 0 0;
+  }
+
+  /* SDKs: two columns split by a dashed rule, no card chrome. */
+  .sdks {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 56px;
+    border-top: 1px dashed var(--rule);
+    border-bottom: 1px dashed var(--rule);
+  }
+
+  .sdk {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 40px 40px 36px 0;
+  }
+
+  .sdk + .sdk {
+    padding: 40px 0 36px 40px;
+    border-left: 1px dashed var(--rule);
+  }
+
+  .sdk h3 {
+    font-size: 26px;
+    line-height: 1.2;
+    margin-top: 8px;
+  }
+
+  .muted {
+    color: var(--ink-3);
+    font-weight: 500;
+  }
+
+  .sdk li {
+    position: relative;
+    padding: 6px 0 6px 20px;
+  }
+
+  .sdk li::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 15px;
+    width: 8px;
+    height: 1px;
+    background: var(--ink);
+  }
+
+  .sdk-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: auto;
+    padding-top: 16px;
+  }
+
+  .text-link {
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: var(--rule);
+    text-underline-offset: 4px;
+    transition: text-decoration-color 0.18s;
+  }
+
+  .text-link:hover {
+    text-decoration-color: var(--accent);
+  }
+
+  @media (max-width: 860px) {
+    .head,
+    .flagship,
+    .sdks {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .copy {
+      padding: 20px 16px 16px;
+    }
+    .sheet {
+      padding: 20px;
+    }
+    .sdk,
+    .sdk + .sdk {
+      padding: 36px 0;
+      border-left: 0;
+    }
+    .sdk + .sdk {
+      border-top: 1px dashed var(--rule);
+    }
+  }
+</style>

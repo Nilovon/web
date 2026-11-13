@@ -1,0 +1,93 @@
+---
+const links = [
+  { label: 'Products', href: '#products' },
+  { label: 'How we work', href: '#principles' },
+  { label: 'Contact', href: '#contact' },
+];
+---
+
+<header class="nav-wrap">
+  <nav class="nav" aria-label="Main">
+    <a href="#top" class="brand">Nilovon</a>
+    <ul class="links">
+      {
+        links.map((link) => (
+          <li>
+            <a href={link.href}>{link.label}</a>
+          </li>
+        ))
+      }
+    </ul>
+    <a href="https://github.com/Nilovon" class="btn btn-primary cta">GitHub</a>
+  </nav>
+</header>
+
+<style>
+  .nav-wrap {
+    position: sticky;
+    top: 16px;
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    padding-inline: 12px;
+    margin-top: 16px;
+  }
+
+  .nav {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    width: min(100%, 680px);
+    padding: 6px;
+    background: rgb(255 255 255 / 0.92);
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    backdrop-filter: blur(10px);
+  }
+
+  .brand {
+    padding: 0 16px;
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: -0.02em;
+  }
+
+  .links {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    list-style: none;
+    padding: 0 8px;
+    border-inline: 1px dashed var(--rule);
+    height: 100%;
+    align-items: center;
+  }
+
+  .links a {
+    display: block;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink-2);
+    border-radius: 8px;
+  }
+
+  .links a:hover {
+    color: var(--ink);
+    background: var(--card);
+  }
+
+  .cta {
+    height: 38px;
+    margin-left: 6px;
+  }
+
+  @media (max-width: 560px) {
+    .links {
+      display: none;
+    }
+    .nav {
+      grid-template-columns: 1fr auto;
+    }
+  }
+</style>

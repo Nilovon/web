@@ -1,0 +1,118 @@
+---
+const principles = [
+  {
+    title: 'Source you can read',
+    text: 'Lumvika, BucketKit and hcloud-js are all public on GitHub. Issues and pull requests are welcome.',
+  },
+  {
+    title: 'TypeScript all the way',
+    text: 'Server, client, SDK and app share one language, so types follow the data instead of stopping at an API boundary.',
+  },
+  {
+    title: 'Your servers, your keys',
+    text: 'Lumvika runs on your own infrastructure and talks to the model you choose. Nothing has to leave your setup.',
+  },
+];
+---
+
+<section id="principles" class="section principles">
+  <h2>How we work</h2>
+  <ol>
+    {
+      principles.map((p) => (
+        <li>
+          <h3>{p.title}</h3>
+          <p>{p.text}</p>
+        </li>
+      ))
+    }
+  </ol>
+
+  <div class="horizon">
+    <span class="label">On the horizon</span>
+    <p>
+      <strong>WaveMail</strong> is a transactional email service hosted in Germany, for teams who need
+      their data to stay in the country. We are still working out whether it fills a real gap, so it
+      is paused for now.
+    </p>
+    <span class="status label">Paused</span>
+  </div>
+</section>
+
+<style>
+  .principles {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    gap: 48px;
+  }
+
+  h2 {
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.05;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  ol {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 36px;
+  }
+
+  h3 {
+    margin: 0 0 6px;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+
+  li p {
+    max-width: 52ch;
+    color: var(--ink-2);
+    line-height: 1.6;
+  }
+
+  .horizon {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    gap: 16px 48px;
+    align-items: start;
+    margin-top: 40px;
+    padding: 28px;
+    border: 1px dashed var(--rule);
+    border-radius: var(--radius);
+  }
+
+  .horizon p {
+    max-width: 60ch;
+    color: var(--ink-2);
+    line-height: 1.6;
+  }
+
+  .horizon strong {
+    color: var(--ink);
+  }
+
+  .status {
+    grid-column: 2;
+    justify-self: start;
+    padding: 2px 8px;
+    border: 1px dashed var(--ink-3);
+    border-radius: 6px;
+  }
+
+  @media (max-width: 860px) {
+    .principles,
+    .horizon {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .status {
+      grid-column: 1;
+    }
+    .horizon {
+      padding: 20px;
+    }
+  }
+</style>

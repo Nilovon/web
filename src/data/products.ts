@@ -1,80 +1,79 @@
+export interface ProductLink {
+  label: string;
+  href: string;
+}
+
 export interface Product {
   id: string;
   name: string;
   kind: string;
-  badge: { label: string; variant: 'outline' | 'solid' };
-  openSource: boolean;
+  license: string;
   tagline: string;
   description: string;
   features: string[];
-  href: string;
-  cta: string;
+  links: ProductLink[];
   stack: string;
-  /** Colors for the 3D slab's top texture and sides. */
+  /** Colors for the 3D slab's top texture and sides, also used for the index square. */
   slab: { bg: string; fg: string; side: string; edge: number };
 }
 
 export const products: Product[] = [
   {
-    id: 'tenvima',
-    name: 'Tenvima',
+    id: 'lumvika',
+    name: 'Lumvika',
     kind: 'Platform',
-    badge: { label: 'Alpha', variant: 'outline' },
-    openSource: false,
-    tagline: 'Modular all-in-one workspace for IT service providers',
+    license: 'AGPL-3.0',
+    tagline: 'AI coworkers that run your work',
     description:
-      'A modular platform that bundles tenant management, helpdesk and knowledge base into one lean workspace — built for IT-Systemhäuser and MSPs who are tired of juggling bloated suites and ten different logins. Connect Microsoft Entra tenants, run a clean ticket system with SLAs, and keep your docs in a Confluence-style wiki — all sharing the same identity, permissions and UI. Hosted in the EU (Frankfurt) with per-workspace schema isolation.',
+      'Pick or build an agent, connect your tools, and it works on its own machine around the clock. You bring the model through your own API key or subscription. Lumvika runs on your infrastructure from two public Docker images, and every workspace has every feature.',
     features: [
-      'Multi-tenant Microsoft 365 management via Entra OIDC',
-      'Helpdesk with SLA tracking, queues and customer portal',
-      'Wiki with spaces, tags, versioning and sub-100ms full-text search',
-      'Activate only the modules you need — pay per seat plus module flat',
-      'EU-hosted, DSGVO-konform, tenant-isolated by design',
-      'REST API and webhooks for your existing workflows',
+      'Agents with their own machine, browser and screen',
+      'Connect the tools your team already uses',
+      'Bring your own model: API key or subscription',
+      'Self-host with Docker Compose, Postgres and S3-compatible storage',
+      'Web app plus an iPhone app',
     ],
-    href: 'https://tenvima.com/',
-    cta: 'Visit tenvima.com',
-    stack: 'TypeScript · React · Node.js · PostgreSQL',
-    slab: { bg: '#ECEAE4', fg: '#121210', side: '#BDBAB0', edge: 0x121210 },
+    links: [
+      { label: 'View on GitHub', href: 'https://github.com/Nilovon/lumvika' },
+      { label: 'Self-hosting guide', href: 'https://docs.lumvika.com/self-host/install' },
+    ],
+    stack: 'Next.js · React · Hono · Expo · PostgreSQL',
+    slab: { bg: '#2347D6', fg: '#FFFFFF', side: '#1A35A3', edge: 0x0f1f66 },
   },
   {
     id: 'bucketkit',
     name: 'BucketKit',
     kind: 'SDK',
-    badge: { label: 'Open source', variant: 'solid' },
-    openSource: true,
+    license: 'Open source',
     tagline: 'Typesafe S3 uploads for Node.js and React',
     description:
-      'A developer-first SDK for handling S3-compatible file uploads. BucketKit gives you full type safety across your upload pipeline, from presigned URL generation on the server to progress tracking in React. No more guessing what your upload config looks like at runtime.',
+      'Handles S3-compatible file uploads with types across the whole pipeline, from presigned URLs on the server to progress tracking in React.',
     features: [
-      'End-to-end type safety from server to client',
-      'React hooks for upload progress, drag-and-drop, and file validation',
-      'Works with any S3-compatible storage (AWS, Minio, R2, etc.)',
-      'Lightweight — zero dependencies in the core package',
+      'Type safety from server to client',
+      'React hooks for progress, drag and drop and validation',
+      'Works with AWS S3, MinIO, R2 and other S3-compatible storage',
+      'Zero dependencies in the core package',
     ],
-    href: 'https://bucketkit.nilovon.com/',
-    cta: 'Visit website',
-    stack: 'TypeScript · React · Node.js · S3',
-    slab: { bg: '#F2B705', fg: '#121210', side: '#B88A00', edge: 0x121210 },
+    links: [{ label: 'bucketkit.nilovon.com', href: 'https://bucketkit.nilovon.com/' }],
+    stack: 'TypeScript · React · Node.js',
+    slab: { bg: '#FFFFFF', fg: '#151514', side: '#D9D8D3', edge: 0x151514 },
   },
   {
     id: 'hcloud',
     name: 'hcloud-js',
     kind: 'SDK',
-    badge: { label: 'Open source', variant: 'solid' },
-    openSource: true,
+    license: 'Open source',
     tagline: 'Typesafe Hetzner Cloud SDK',
     description:
-      'A TypeScript SDK for the Hetzner Cloud API. Manage servers, networks, firewalls, and all other Hetzner Cloud resources with full type safety and autocompletion. Built for developers who automate their infrastructure and want confidence in every API call.',
+      'Manage servers, networks, firewalls and every other Hetzner Cloud resource from TypeScript, with autocompletion for each call.',
     features: [
-      'Complete coverage of the Hetzner Cloud API',
-      'Full TypeScript types — catch errors before they hit production',
-      'Designed for infrastructure automation and CI/CD pipelines',
+      'Covers the full Hetzner Cloud API',
+      'Errors show up in your editor, not in production',
+      'Made for infrastructure scripts and CI pipelines',
     ],
-    href: 'https://hcloud-js.nilovon.com/',
-    cta: 'Visit website',
+    links: [{ label: 'hcloud-js.nilovon.com', href: 'https://hcloud-js.nilovon.com/' }],
     stack: 'TypeScript · Hetzner Cloud',
-    slab: { bg: '#3A3935', fg: '#ECEAE4', side: '#262522', edge: 0xeceae4 },
+    slab: { bg: '#151514', fg: '#F4F3EF', side: '#0B0B0A', edge: 0xf4f3ef },
   },
 ];
 

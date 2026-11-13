@@ -13,13 +13,13 @@ const { title, description } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#121210" />
+    <meta name="theme-color" content="#ffffff" />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400..800&family=IBM+Plex+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <title>{title}</title>
@@ -31,26 +31,30 @@ const { title, description } = Astro.props;
 
 <style is:global>
   :root {
-    --ink: #121210;
-    --paper: #eceae4;
-    --accent: #f2b705;
-    --line: #2e2d2a;
-    --text-2: #bdbbb3;
-    --text-3: #9c9a92;
-    --text-4: #75736c;
-    --border-strong: #5e5d57;
+    --ink: #151514;
+    --ink-2: #4a4945;
+    --ink-3: #74736d;
+    --paper: #ffffff;
+    --card: #f4f3ef;
+    --card-2: #ebeae5;
+    --rule: #cfcec7;
+    --accent: #2347d6;
+    --accent-ink: #ffffff;
 
-    --font-sans: 'Archivo', system-ui, sans-serif;
-    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+    --font-sans: 'Schibsted Grotesk', system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
     --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+    --frame: 1180px;
     --gutter: 48px;
+    --radius: 18px;
 
-    color-scheme: dark;
+    color-scheme: light;
   }
 
-  @media (max-width: 859px) {
+  @media (max-width: 760px) {
     :root {
-      --gutter: 24px;
+      --gutter: 20px;
+      --radius: 14px;
     }
   }
 
@@ -62,15 +66,19 @@ const { title, description } = Astro.props;
 
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 96px;
   }
 
   body {
     margin: 0;
     min-height: 100vh;
-    background: var(--ink);
-    color: var(--paper);
+    background: var(--paper);
+    color: var(--ink);
     font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.5;
     -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
   }
 
   :where(a) {
@@ -78,13 +86,13 @@ const { title, description } = Astro.props;
     text-decoration: none;
   }
 
-  :where(a:hover) {
-    color: var(--accent);
+  :where(h1, h2, h3, p, ul, ol) {
+    margin: 0;
   }
 
   ::selection {
     background: var(--accent);
-    color: var(--ink);
+    color: var(--accent-ink);
   }
 
   :focus-visible {
@@ -92,59 +100,82 @@ const { title, description } = Astro.props;
     outline-offset: 3px;
   }
 
-  .container {
-    max-width: 1440px;
+  /* The page sits inside one frame with dotted rails, sections are split by dotted rules. */
+  .frame {
+    max-width: var(--frame);
     margin-inline: auto;
-    padding-inline: var(--gutter);
+    border-inline: 1px dashed var(--rule);
   }
 
-  .mono {
+  .section {
+    border-top: 1px dashed var(--rule);
+    padding: 112px var(--gutter);
+  }
+
+  @media (max-width: 760px) {
+    .frame {
+      border-inline: 0;
+    }
+    .section {
+      padding-block: 72px;
+    }
+  }
+
+  .hl {
+    background: var(--accent);
+    color: var(--accent-ink);
+    padding: 0 0.12em;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  .label {
     font-family: var(--font-mono);
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
+    font-size: 13px;
+    color: var(--ink-3);
   }
 
-  .display {
-    font-weight: 800;
-    font-stretch: 125%;
-    text-transform: uppercase;
-    letter-spacing: -0.03em;
+  .square {
+    display: inline-grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 500;
+    box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.12);
   }
 
   .btn {
-    display: inline-block;
-    padding: 15px 22px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 44px;
+    padding: 0 18px;
+    border-radius: 10px;
     font-weight: 600;
+    font-size: 15px;
     transition:
-      background-color 0.2s,
-      border-color 0.2s;
+      background-color 0.18s,
+      border-color 0.18s,
+      color 0.18s;
   }
 
-  .btn-light {
-    background: var(--paper);
-    color: var(--ink);
-  }
-  .btn-light:hover {
+  .btn-primary {
     background: var(--accent);
-    color: var(--ink);
+    color: var(--accent-ink);
+  }
+  .btn-primary:hover {
+    background: var(--ink);
   }
 
-  .btn-accent {
-    background: var(--accent);
-    color: var(--ink);
-  }
-  .btn-accent:hover {
+  .btn-outline {
+    border: 1px solid var(--rule);
     background: var(--paper);
-    color: var(--ink);
   }
-
-  .btn-ghost {
-    border: 1px solid var(--border-strong);
-    padding: 14px 21px;
-  }
-  .btn-ghost:hover {
-    border-color: var(--accent);
+  .btn-outline:hover {
+    border-color: var(--ink);
   }
 
   @media (prefers-reduced-motion: reduce) {

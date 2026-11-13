@@ -1,0 +1,188 @@
+---
+import { products, pad } from '../data/products';
+---
+
+<section id="top" class="hero">
+  <div class="intro">
+    <h1>Software we would <span class="hl">want to use</span> ourselves.</h1>
+    <p class="lead">
+      Nilovon is a small software studio from Germany. We build self-hostable tools and typesafe
+      SDKs in TypeScript, and we publish the source of everything we ship.
+    </p>
+    <div class="actions">
+      <a href="#products" class="btn btn-primary">See the products</a>
+      <a href="mailto:hello@nilovon.com" class="btn btn-outline">hello@nilovon.com</a>
+    </div>
+  </div>
+
+  <figure class="stage" data-stage>
+    <div class="mount" data-mount></div>
+    <ol class="legend" aria-label="Products in the stack">
+      {
+        products.map((p, i) => (
+          <li>
+            <a href={`#${p.id}`} data-legend={i}>
+              <span class="square" style={`background:${p.slab.bg};color:${p.slab.fg}`}>
+                {pad(i + 1)}
+              </span>
+              <span>
+                <strong>{p.name}</strong>
+                <span class="kind">{p.kind}</span>
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+    <figcaption class="label">Drag to rotate. Click a slab to jump to it.</figcaption>
+  </figure>
+</section>
+
+<script>
+  const stage = document.querySelector<HTMLElement>('[data-stage]');
+  if (stage) {
+    import('../scripts/scene')
+      .then(({ initScene }) => initScene(stage))
+      .catch((err) => {
+        stage.dataset.fallback = '';
+        console.warn('3D scene unavailable:', err);
+      });
+  }
+</script>
+
+<style>
+  .hero {
+    padding: 88px var(--gutter) 56px;
+  }
+
+  .intro {
+    max-width: 760px;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: clamp(40px, 6.2vw, 72px);
+    line-height: 1.04;
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+  }
+
+  .lead {
+    max-width: 560px;
+    margin: 24px auto 0;
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--ink-2);
+    text-wrap: pretty;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 32px;
+  }
+
+  .stage {
+    position: relative;
+    margin: 64px 0 0;
+    height: clamp(420px, 52vw, 600px);
+    background: var(--card);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .mount {
+    position: absolute;
+    inset: 0;
+  }
+
+  .mount :global(canvas) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+    touch-action: pan-y;
+  }
+
+  .legend {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    display: grid;
+    gap: 6px;
+    list-style: none;
+    padding: 0;
+  }
+
+  .legend a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 12px 6px 6px;
+    border-radius: 10px;
+    transition: background-color 0.18s;
+  }
+
+  .legend a:hover,
+  .legend a[data-active] {
+    background: var(--paper);
+  }
+
+  .legend strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .kind {
+    font-size: 13px;
+    color: var(--ink-3);
+  }
+
+  figcaption {
+    position: absolute;
+    right: 24px;
+    bottom: 20px;
+  }
+
+  .stage[data-fallback] figcaption {
+    display: none;
+  }
+
+  @media (max-width: 760px) {
+    .hero {
+      padding-top: 64px;
+    }
+    .stage {
+      height: 520px;
+    }
+    .legend {
+      top: auto;
+      bottom: 16px;
+      left: 16px;
+      right: 16px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .legend a {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      padding: 8px;
+      background: rgb(255 255 255 / 0.7);
+    }
+    .kind {
+      display: none;
+    }
+    figcaption {
+      top: 16px;
+      bottom: auto;
+      left: 16px;
+      right: 16px;
+    }
+  }
+</style>

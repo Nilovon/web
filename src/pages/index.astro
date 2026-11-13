@@ -1,23 +1,23 @@
 ---
 import Base from '../layouts/Base.astro';
-import Header from '../components/Header.astro';
-import Showcase from '../components/Showcase.astro';
-import Horizon from '../components/Horizon.astro';
-import OpenSource from '../components/OpenSource.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import Products from '../components/Products.astro';
+import Principles from '../components/Principles.astro';
 import Contact from '../components/Contact.astro';
-import Footer from '../components/Footer.astro';
 ---
 
 <Base
-  title="Nilovon — Software studio from Germany"
-  description="Nilovon is a small software studio from Germany. We make open source SDKs, developer tools, and business software — built with TypeScript, modern standards, and care."
+  title="Nilovon · Software studio from Germany"
+  description="Nilovon is a small software studio from Germany. We build Lumvika, BucketKit and hcloud-js: self-hostable tools and typesafe SDKs in TypeScript, all open source."
 >
-  <Header />
-  <main>
-    <Showcase />
-    <Horizon />
-    <OpenSource />
-    <Contact />
-  </main>
-  <Footer />
+  <div class="frame">
+    <Nav />
+    <main>
+      <Hero />
+      <Products />
+      <Principles />
+      <Contact />
+    </main>
+  </div>
 </Base>
